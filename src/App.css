@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  padding: 20px;
 }
 
 .App-logo {
@@ -24,8 +25,41 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.list-wrapper {
+  padding-left: 20px;
+}
+
+.button {
+  margin-left: 20px;
+}
+
+.filter-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.entry-info {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 300px;
+}
+
+.property {
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.api {
+  cursor: pointer;
+}
+
+label {
+  font-weight: 500;
+  width: 140px;
 }
 
 @keyframes App-logo-spin {
