@@ -6,6 +6,7 @@ const baseURL = "https://api.publicapis.org/entries";
 export const useFetchHook = () => {
   const [entries, setEntries] = useState<Entry[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [categories, setCategories] = useState<string[]>([]);
 
   const fetchData = async () => {
     try {
@@ -15,6 +16,17 @@ export const useFetchHook = () => {
       setLoading(false);
       const entries = responseJSON.entries;
       setEntries(entries);
+      setCategories(
+        entries.reduce(
+          (acc: Entry[], cur: Entry, index: number) =>
+            (entries[index + 1] &&
+              cur.Category !== entries[index + 1].Category) ||
+            !entries[index + 1]
+              ? [...acc, cur.Category]
+              : [...acc],
+          [] as boolean[]
+        )
+      );
     } catch (e) {
       console.log(e);
     }
@@ -28,5 +40,5 @@ export const useFetchHook = () => {
     fetchData();
   }, []);
 
-  return { entries, removeHandler, loading };
+  return { entries, removeHandler, loading, categories };
 };

@@ -26,7 +26,21 @@
 }
 
 .list-wrapper {
-  padding-left: 20px;
+  padding-left: 0;
+}
+
+.list-item {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.list-item-wrapper {
+  width: 500px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
 }
 
 .button {
@@ -55,6 +69,10 @@
 
 .api {
   cursor: pointer;
+  padding-right: 10px;
+  max-width: 300px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 label {
@@ -69,4 +87,8 @@ label {
   to {
     transform: rotate(360deg);
   }
+}
+
+button {
+  cursor: pointer;
 }

@@ -2,13 +2,13 @@ import React, { useState, useMemo, useCallback } from 'react';
 import './App.css';
 import { Entry } from './Store/types';
 import { useFetchHook } from './useFetchHook';
-import { categories, cors, corsValuesEnum } from './constants';
+import { cors, corsValuesEnum } from './constants';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const App: React.FC = () => {
-  const { entries, removeHandler, loading } = useFetchHook();
+  const { entries, removeHandler, loading, categories } = useFetchHook();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [selectedCors, setSelectedCors] = useState<string>(corsValuesEnum.ALL)
   const [displayEntry, setDisplayEntry] = useState<Entry | null>(null);
@@ -23,7 +23,6 @@ const App: React.FC = () => {
   }
 
   const handleEntryClick = useCallback((api: string) => {
-    console.log(api);
     const entry = entries.find((entry: Entry) => entry.API === api);
     setDisplayEntry(entry || null);
   }, [entries]);
@@ -72,8 +71,11 @@ const App: React.FC = () => {
           {filteredEntries.map((entry, index) =>
             <li
               key={index}
+              className="list-item"
             >
-              <span className="api" onClick={() => handleEntryClick(entry.API)}>{entry.API}  </span>|  <span>{entry.Category}</span>
+              <div className="list-item-wrapper">
+                <span className="api" onClick={() => handleEntryClick(entry.API)}>{entry.API}  </span> <span>{entry.Category}</span>
+              </div>
               <button className="button" onClick={() => removeHandler({ api: entry.API })}>Remove</button>
             </li>)}
         </ul>
